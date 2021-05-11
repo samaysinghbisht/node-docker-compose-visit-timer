@@ -1,0 +1,28 @@
+version: '3'
+
+
+# REASON BEHIND USING DOCKER-COMPOSE IS THAT IT MAKES NETWORKING AND CONNECTING DIFFERENT CONTAINER QUITE STRAIGHT FORWARD
+# BY DEFINING THE SERVICES INSIDE THIS FILE, DOCKER-COMPOSE IS GOING TO CREATE THESE CONTAINER INSIDE THE SAME NETWORK 
+# AND THEY ARE GOING TO HAVE FREE ACCESS TO COMMUNICATE WITH EACH OTHER IN ANY WAY AS THEY PLEASE
+
+# Inside services we will specify the containers we want out docker-compose file to create
+# services here doesn't denote the container but technically it denotes the type of container
+
+services: 
+    redis-server:
+        image: 'redis'
+    node-app:
+        build: .
+        ports:
+          # dash in a YAML file means we are specifing an array, and we can specify multiple port mapping inside this ports section of the node-app service.
+          # syntax is port_in_host_machine : port_inside_the_container
+          - "8081:8081"
+        restart: on-failure
+        # you can use below policies if you want to change the response of the webpage
+        # "no"
+        # always
+        # on-failure
+        # unless-stopped
+        # refer for notes.txt for more details
+        # Here I'm using on-failure in order to restart the container if I visit failure page and don't start if I visit noRestart page on in other words our specific
+        # routes other than root route.

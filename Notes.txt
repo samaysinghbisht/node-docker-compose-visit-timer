@@ -1,0 +1,14 @@
+About Exit codes in index.js
+
+exit(0) - we exited and everything is OK.
+exit(any number other than 0) - means we exited because something went wrong.
+
+
+About Restart Policy in docker-compose
+
+"no" - container is not going to Restart
+always - container is going to restart as soon as it got stopped
+on-failure - container will restart only when it got stopped because of some failure i.e, error code other than 0
+unless-stopped - container will start automatically unless it has been stopped forcibly stopped form the command line by running "docker stop"
+
+NOTE: if you are going to use the no-restart policy you specificly have to put in quotes like "no" or 'no', because a raw text no is considered as false in YAML world.
