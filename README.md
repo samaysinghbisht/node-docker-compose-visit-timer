@@ -15,7 +15,7 @@ The root app contains a docker-compose.yml file which builds individual services
 **Fetures which I have implemented in this project:**
 1. Networking with Docker-Compose
 2. Container Maintenance with compose
-3. Automatic Container Start in case of failure
+3. Automatic Container restart in case of failure
 
 
 **Dockerfile**: There is only one Dockerfile in the root directory which download the node.js dependencies and create a container out of it with sets the default command as "npm start".
