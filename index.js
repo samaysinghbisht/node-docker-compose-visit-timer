@@ -21,19 +21,11 @@ app.get('/', (req, res) => {
 app.get('/noRestart', (req, res) => {
   process.exit(0);
   // exit code 0 means everything is fine but we stopped the container.
-  client.get('visits', (err, visits) => {
-    res.send('Number of visits ' + visits);
-    client.set('visits', parseInt(visits) + 1);
-  });
 });
 
 app.get('/failure', (req, res) => {
   process.exit(13);
   // exit code other than 0 means something went wrong that's why we stopped.
-  client.get('visits', (err, visits) => {
-    res.send('Number of visits ' + visits);
-    client.set('visits', parseInt(visits) + 1);
-  });
 });
 
 app.listen(8081, () => {
